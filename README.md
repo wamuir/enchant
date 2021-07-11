@@ -1,7 +1,7 @@
-Go-Enchant-2
+Go-Enchant
 ==========
 
-Go-Enchant-2 provides bindings for the C [Enchant2 Spellcheck Library](http://www.abisource.com/projects/enchant/) in Go. Instead of offering direct mappings to the Enchant functions, it abstracts away some complexity and makes it easier to do resource management in Go.  Go-Enchant-2 is a fork of [Go-Enchant](https://github.com/hermanschaaf/enchant) with only minimal modification.
+Go-Enchant provides bindings for the C [Enchant2 Spellcheck Library](http://www.abisource.com/projects/enchant/) in Go. Instead of offering direct mappings to the Enchant functions, it abstracts away some complexity and makes it easier to do resource management in Go.  Go-Enchant is a fork of [hermanschaaf/enchant](https://github.com/hermanschaaf/enchant) with only minimal modification.
 
 ### Installation
 
@@ -14,7 +14,7 @@ sudo apt-get install libenchant-2-dev
 Then install this package with `go get`:
 
 ```bash
-go get github.com/wamuir/enchant-2
+go get github.com/wamuir/enchant
 ```
 
 ### Usage
@@ -26,7 +26,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/wamuir/enchant-2"
+	"github.com/wamuir/enchant"
 )
 
 func main() {
