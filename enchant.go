@@ -15,11 +15,13 @@ static char* getString(char ** c, int i) {
 import "C"
 
 import (
+	"sync"
 	"unsafe"
 )
 
-// Enchant is a type that encapsulates Enchant internals
+// Enchant is a sync.Locker that encapsulates Enchant internals
 type Enchant struct {
+	sync.Mutex
 	broker *C.EnchantBroker
 	dict   *C.EnchantDict
 }
@@ -43,7 +45,7 @@ type Enchant struct {
 // This is why the above example contains a deferred call to Free().
 func NewEnchant() (e *Enchant, err error) {
 	broker := C.enchant_broker_init()
-	e = &Enchant{broker, nil}
+	e = &Enchant{broker: broker, dict: nil}
 	// we don't return errors at the moment, but we might in the future
 	return e, nil
 }
@@ -121,6 +123,10 @@ func (e *Enchant) Suggest(word string) (suggestions []string) {
 	var n int
 	nSugg := uintptr(n)
 	ns := (*C.size_t)(unsafe.Pointer(&nSugg))
+
+	// apply exclusion lock for thread safety
+	e.Lock()
+	defer e.Unlock()
 
 	// get the suggestions; ns will be modified to store the
 	// number of suggestions returned
