@@ -16,10 +16,10 @@ func TestDictExists(t *testing.T) {
 	}
 
 	cases := []Expect{
-		Expect{"en", true},
-		Expect{"en_GB", true},
-		Expect{"none", false},
-		Expect{"a", false},
+		{"en", true},
+		{"en_GB", true},
+		{"none", false},
+		{"a", false},
 	}
 
 	for _, c := range cases {
@@ -49,12 +49,12 @@ func TestLoadDictCheckAndSuggest(t *testing.T) {
 
 	// test Check
 	cases := []Expect{
-		Expect{"test", true},
-		Expect{"yes", true},
-		Expect{"amazing", true},
-		Expect{"yoyoyoyo", false},
-		Expect{"nosuchword", false},
-		Expect{"大家好", false},
+		{"test", true},
+		{"yes", true},
+		{"amazing", true},
+		{"yoyoyoyo", false},
+		{"nosuchword", false},
+		{"大家好", false},
 	}
 
 	for _, c := range cases {
