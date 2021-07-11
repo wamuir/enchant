@@ -1,6 +1,11 @@
 Go-Enchant
 ==========
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/wamuir/enchant.svg)](https://pkg.go.dev/github.com/wamuir/enchant)
+[![Build Status](https://github.com/wamuir/enchant/actions/workflows/go.yml/badge.svg?branch=master&event=push)](https://github.com/wamuir/enchant/actions/workflows/go.yml?query=event%3Apush+branch%3Amaster)
+[![codecov](https://codecov.io/gh/wamuir/enchant/branch/master/graph/badge.svg)](https://codecov.io/gh/wamuir/enchant)
+[![Go Report Card](https://goreportcard.com/badge/github.com/wamuir/enchant)](https://goreportcard.com/report/github.com/wamuir/enchant)
+
 Go-Enchant provides bindings for the C [Enchant2 Spellcheck Library](http://www.abisource.com/projects/enchant/) in Go. Instead of offering direct mappings to the Enchant functions, it abstracts away some complexity and makes it easier to do resource management in Go.  Go-Enchant is a fork of [hermanschaaf/enchant](https://github.com/hermanschaaf/enchant) with only minimal modification.
 
 ### Installation
