@@ -33,12 +33,12 @@ type Enchant struct {
 //
 // Example usage:
 //
-// 		enchant, err := enchant.NewEnchant()
-// 		if err != nil {
-// 			panic("Enchant error: " + err.Error())
-// 		}
-// 		defer enchant.Free()
-//      fmt.Println(enchant.DictExists("zh"))
+//	enchant, err := enchant.NewEnchant()
+//	if err != nil {
+//		panic("Enchant error: " + err.Error())
+//	}
+//	defer enchant.Free()
+//	fmt.Println(enchant.DictExists("zh"))
 //
 // Because the Enchant package is a binding to Enchant C library, memory
 // allocated by the NewEnchant() call has to be disposed explicitly.
@@ -131,10 +131,11 @@ func (e *Enchant) Suggest(word string) (suggestions []string) {
 	// get the suggestions; ns will be modified to store the
 	// number of suggestions returned
 	response := C.enchant_dict_suggest(e.dict, cWord, *s, ns)
+	defer C.enchant_dict_free_string_list(e.dict, response)
 
 	for i := 0; i < int(*ns); i++ {
-		ci := C.int(i)
-		suggestions = append(suggestions, C.GoString(C.getString(response, ci)))
+		c_str := C.getString(response, C.int(i))
+		suggestions = append(suggestions, C.GoString(c_str))
 	}
 
 	return suggestions
